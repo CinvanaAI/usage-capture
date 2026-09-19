@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ollama-usage-grabber"
+version = "0.1.0"
+description = "Capture and parse visible Ollama cloud usage percentages on Windows."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+capture = [
+  "Pillow>=10,<12",
+  "PyAutoGUI>=0.9.54,<1",
+  "pytesseract>=0.3.13,<1",
+]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+ollama-usage = "ollama_usage_grabber.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

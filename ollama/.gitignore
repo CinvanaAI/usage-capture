@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+output/
+
+
+# Local first-use results
+output/
+.env
+__pycache__/
+*.egg-info/
+build/
+dist/
