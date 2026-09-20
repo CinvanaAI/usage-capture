@@ -1,0 +1,78 @@
+{
+  "synthetic": true,
+  "desktop_actions": 0,
+  "cases": [
+    {
+      "adapter": "codex",
+      "case": "labeled",
+      "synthetic_text": "5h: 73% Weekly: 41%",
+      "five_hour": 73.0,
+      "weekly": 41.0,
+      "strategy": "labels",
+      "complete": true
+    },
+    {
+      "adapter": "codex",
+      "case": "partial",
+      "synthetic_text": "Weekly: 41%",
+      "five_hour": null,
+      "weekly": 41.0,
+      "strategy": "labels",
+      "complete": false
+    },
+    {
+      "adapter": "codex",
+      "case": "position",
+      "synthetic_text": "73% 41%",
+      "five_hour": 73.0,
+      "weekly": 41.0,
+      "strategy": "position",
+      "complete": true
+    },
+    {
+      "adapter": "codex",
+      "case": "invalid",
+      "synthetic_text": "-5% then 1000.5%",
+      "five_hour": null,
+      "weekly": null,
+      "strategy": "position",
+      "complete": false
+    },
+    {
+      "adapter": "ollama",
+      "case": "labeled",
+      "synthetic_text": "Session: 73% Weekly: 41%",
+      "session": 73.0,
+      "weekly": 41.0,
+      "strategy": "labels",
+      "complete": true
+    },
+    {
+      "adapter": "ollama",
+      "case": "partial",
+      "synthetic_text": "Weekly: 41%",
+      "session": null,
+      "weekly": 41.0,
+      "strategy": "labels",
+      "complete": false
+    },
+    {
+      "adapter": "ollama",
+      "case": "position",
+      "synthetic_text": "73% 41%",
+      "session": 73.0,
+      "weekly": 41.0,
+      "strategy": "position",
+      "complete": true
+    },
+    {
+      "adapter": "ollama",
+      "case": "invalid",
+      "synthetic_text": "-5% then 1000.5%",
+      "session": null,
+      "weekly": null,
+      "strategy": "position",
+      "complete": false
+    }
+  ]
+}

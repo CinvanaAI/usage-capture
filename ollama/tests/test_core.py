@@ -49,3 +49,17 @@ def test_capture_fails_closed_off_windows(monkeypatch, tmp_path) -> None:
     with pytest.raises(RuntimeError, match="Windows only"):
         capture.capture_usage(tmp_path)
     assert not any(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize("text", ["-5% then -40%", "+5% then +40%", "1000.5% then 9999,4%", "\u22125% then \u221240%", "\uff0d5% then \uff0d40%"])
+def test_invalid_tokens_cannot_become_valid_positional_values(text):
+    result = parse_usage(text)
+    assert not result.complete
+    assert result.weekly is None
+    assert result.session is None
+
+
+@pytest.mark.parametrize("text", ["Session: -5% Weekly: -40%", "Session -5% Weekly -40%"])
+def test_negative_labeled_values_are_not_separator_hyphens(text):
+    result = parse_usage(text)
+    assert result.session is None and result.weekly is None

@@ -1,0 +1,20 @@
+name: Verify adapters
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  parser:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        adapter: [codex, ollama]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ./${{ matrix.adapter }} pytest
+      - run: python -m pytest ${{ matrix.adapter }}/tests -q
+      - run: python -m ${{ matrix.adapter }}_usage_grabber.cli parse-text ${{ matrix.adapter }}/examples/synthetic-ocr.txt

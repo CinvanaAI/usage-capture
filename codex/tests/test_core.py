@@ -48,3 +48,17 @@ def test_crop_box_rejects_invalid_ratios(ratios: tuple[float, float, float, floa
     with pytest.raises(ValueError):
         crop_box(100, 100, ratios)
 
+
+
+@pytest.mark.parametrize("text", ["-5% then -40%", "+5% then +40%", "1000.5% then 9999,4%", "\u22125% then \u221240%", "\uff0d5% then \uff0d40%"])
+def test_invalid_tokens_cannot_become_valid_positional_values(text):
+    result = parse_usage(text)
+    assert not result.complete
+    assert result.weekly is None
+    assert result.five_hour is None
+
+
+@pytest.mark.parametrize("text", ["5h: -5% Weekly: -40%", "5h -5% Weekly -40%"])
+def test_negative_labeled_values_are_not_separator_hyphens(text):
+    result = parse_usage(text)
+    assert result.five_hour is None and result.weekly is None

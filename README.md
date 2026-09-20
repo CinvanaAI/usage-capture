@@ -17,6 +17,8 @@ The examples report 73 and 41 with `strategy: labels`. See the actual [Codex res
 
 OCR can lose labels, and a percentage alone does not tell you whether the source meant used or remaining. Each adapter retains the capture, OCR text, parse strategy and normalized values. Positional fallback remains visibly different from a labeled parse.
 
+[Run both adapters and interpret partial/fallback results](docs/INTERPRETING.md).
+
 ## Optional Windows capture
 
 Read the selected [Codex adapter](codex/README.md) or [Ollama adapter](ollama/README.md) for capture dependencies and commands. Desktop capture requires Tesseract, the optional capture dependencies, a logged-in app and a matching foreground title. It preserves existing captures unless `--force` is deliberate. The title check reduces accidental focus mistakes; it does not establish the identity of a web page or account.

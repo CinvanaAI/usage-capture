@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import re
 
 
-_PERCENT = re.compile(r"(?<!\d)(\d{1,3}(?:[.,]\d+)?)\s*%")
+_PERCENT = re.compile(r"(?<![\d.,+\-\u2212\ufe63\uff0d\uff0b])(\d{1,3}(?:[.,]\d+)?)\s*%")
 
 
 @dataclass(frozen=True)
@@ -25,7 +25,7 @@ def _valid_percentage(raw: str) -> float | None:
 
 def _labeled(text: str, label: str) -> float | None:
     match = re.search(
-        rf"{label}\s*[:\-]?\s*(\d{{1,3}}(?:[.,]\d+)?)\s*%",
+        rf"(?<!\w){label}\s*(?::\s*|-\s+)?(\d{{1,3}}(?:[.,]\d+)?)\s*%",
         text,
         re.IGNORECASE,
     )
